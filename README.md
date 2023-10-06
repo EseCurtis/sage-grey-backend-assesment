@@ -9,18 +9,19 @@
 - **Demo Request Payload**:
   ```json
   {
-    "username": "john_doe",
-    "password": "secure_password",
+    "username": "username",
+    "password": "password",
     "balance": 1000
   }
   ```
 - **Demo Response**:
   ```json
   {
-    "username": "john_doe",
+    "username": "username",
+    "password": "password",
     "balance": 1000,
-    "userId": "user_id",
-    "createdAt": "timestamp"
+    "acknowledged": true,
+    "insertedId": 'user_id'
   }
   ```
 
@@ -30,11 +31,12 @@
 - **Description**: Get user details by user ID (protected by token-based authentication).
 - **Demo Response**:
   ```json
-  {
-    "username": "john_doe",
-    "balance": 1000,
-    "userId": "user_id",
-    "createdAt": "timestamp"
+   {
+    "_id": "user_id",
+    "timestamp": "timestamp",
+    "username": "username",
+    "password": "password",
+    "balance": 1000
   }
   ```
 
@@ -87,7 +89,7 @@
 - **Demo Request Payload**:
   ```json
   {
-    "username": "demo",
+    "username": "username",
     "password": "password"
   }
   ```
