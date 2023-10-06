@@ -10,6 +10,6 @@ router.post('/', userController.createUser);
 router.get('/:id', authenticateToken, userController.getUserById);
 
 // Get user details (protected by token-based auth)
-router.get('/fund', authenticateToken, userController.fundUserById);
+router.post('/fund', authenticateToken, userController.fundUserById);
 
 module.exports = router;
