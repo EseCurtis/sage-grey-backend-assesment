@@ -1,8 +1,15 @@
-function authenticateUser(req, res) {
+const userModel = require('../models/userModel');
+
+async function authenticateUser(req, res) {
     const username = req.body.username;
     const password = req.body.password;
-    if (username === 'demo' && password === 'password') {
-      res.json({ token: 'your-faux-token' });
+
+    const authed_user = await userModel.authUser(username, password);
+
+    if (authed_user) {
+
+      res.json({ token: process.env.TOKEN });
+      
     } else {
       res.status(401).json({ message: 'Authentication failed' });
     }
