@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 app.use('/api/users', usersRouter);
 app.use('/api/transactions', transactionsRouter);
-app.use('/api/auth', authRouter);
+app.use('/api/authenticate', authRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
