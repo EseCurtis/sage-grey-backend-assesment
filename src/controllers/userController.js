@@ -1,20 +1,39 @@
 const userModel = require('../models/userModel');
 
-// Create a user account
+// Function to create a user
 async function createUser(req, res) {
-  // Implement user creation logic using userModel
-  // Example: const user = await userModel.create(req.body);
-  res.send('User created');
+  try {
+    const user = await userModel.createUser(req.body);
+    res.status(201).json(user);
+  } catch (error) {
+    console.error('Error creating user:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 }
 
-// Get user details by ID
+// Function to get user details by ID
 async function getUserById(req, res) {
-  // Implement get user by ID logic using userModel
-  // Example: const user = await userModel.getById(req.params.id);
-  res.send('User details');
+  try {
+    const userId = req.params.id;
+    const user = await userModel.getUserById(userId);
+
+    if (!user) {
+      res.status(404).json({ message: 'User not found' });
+    } else {
+      res.json(user);
+    }
+  } catch (error) {
+    console.error('Error getting user by ID:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+async function fundUserById(req, res) {
+  
 }
 
 module.exports = {
   createUser,
   getUserById,
+  fundUserById
 };
