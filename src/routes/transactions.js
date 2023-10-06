@@ -6,7 +6,5 @@ const authenticateToken = require('../middleware/authenticateToken');
 // Transfer funds (protected by token-based auth)
 router.post('/transfer', authenticateToken, transactionController.transferFunds);
 
-// Withdraw funds (protected by token-based auth)
-router.post('/withdraw', authenticateToken, transactionController.withdrawFunds);
 
 module.exports = router;
