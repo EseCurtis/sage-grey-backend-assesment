@@ -1,0 +1,17 @@
+{
+  "name": "backend-assesment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "App.js",
+  "author": "Ese Curtis",
+  "license": "ISC",
+  "scripts": {
+    "server": "node ./src/App.js"
+  },
+
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^4.0.0",
+    "knex": "^0.95.6"
+  }
+}
