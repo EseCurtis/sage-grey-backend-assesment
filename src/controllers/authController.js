@@ -1,6 +1,4 @@
-// Implement simulated token-based authentication logic here
 function authenticateUser(req, res) {
-    // Example: Check username and password, return a faux token
     const username = req.body.username;
     const password = req.body.password;
     if (username === 'demo' && password === 'password') {
