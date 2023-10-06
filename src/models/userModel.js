@@ -17,7 +17,6 @@ async function connectToDatabase() {
 async function createUser(user) {
   const db = await connectToDatabase();
   const usersCollection = db.collection('users');
-  console.log(user)
   const result = await usersCollection.insertOne({ timestamp: new Date(), ...user });
 
   return result;
@@ -31,10 +30,10 @@ async function getUserById(userId) {
 
     // Find the user by their ObjectId (assuming "_id" is an ObjectId)
     const user = await usersCollection.findOne({ _id: new ObjectId(userId) });
-
+    
     return user;
   } catch (error) {
-    console.error('Error fetching user by ID:', error);
+    //console.error('Error fetching user by ID:', error);
     throw error;
   }
 }
@@ -46,7 +45,6 @@ async function authUser(username, password) {
 
     // Find the user by their ObjectId (assuming "_id" is an ObjectId)
     const user = await usersCollection.findOne({ username, password });
-
     return user;
   } catch (error) {
     console.error('Error trying to auth user', error);

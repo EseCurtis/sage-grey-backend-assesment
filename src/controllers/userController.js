@@ -4,7 +4,7 @@ const userModel = require('../models/userModel');
 async function createUser(req, res) {
   try {
     const user = await userModel.createUser(req.body);
-    res.status(201).json(user);
+    res.status(201).json({ username: req.body.username, password: req.body.password, ...user});
   } catch (error) {
     console.error('Error creating user:', error);
     res.status(500).json({ message: 'Internal server error' });
@@ -23,7 +23,7 @@ async function getUserById(req, res) {
       res.json(user);
     }
   } catch (error) {
-    console.error('Error getting user by ID:', error);
+    //console.error('Error getting user by ID:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 }

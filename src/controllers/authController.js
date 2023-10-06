@@ -8,7 +8,7 @@ async function authenticateUser(req, res) {
 
     if (authed_user) {
 
-      res.json({ token: process.env.TOKEN });
+      res.status(201).json({ token: process.env.TOKEN });
       
     } else {
       res.status(401).json({ message: 'Authentication failed' });
