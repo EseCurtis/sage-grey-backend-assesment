@@ -6,12 +6,15 @@
   "author": "Ese Curtis",
   "license": "ISC",
   "scripts": {
-    "server": "node ./src/App.js"
+    "prod": "node ./src/App.js",
+    "dev": "nodemon ./src/App.js"
   },
-
   "dependencies": {
     "express": "^4.17.1",
-    "mongodb": "^4.0.0",
-    "knex": "^0.95.6"
+    "knex": "^0.95.6",
+    "mongodb": "^4.0.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1"
   }
 }

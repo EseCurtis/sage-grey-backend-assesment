@@ -9,4 +9,7 @@ router.post('/', userController.createUser);
 // Get user details (protected by token-based auth)
 router.get('/:id', authenticateToken, userController.getUserById);
 
+// Get user details (protected by token-based auth)
+router.get('/fund', authenticateToken, userController.fundUserById);
+
 module.exports = router;
