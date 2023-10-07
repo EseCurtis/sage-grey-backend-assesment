@@ -9,7 +9,10 @@ router.post('/', userController.createUser);
 // Get user details (protected by token-based auth)
 router.get('/:id', authenticateToken, userController.getUserById);
 
-// Get user details (protected by token-based auth)
+// Fund user account (protected by token-based auth)
 router.post('/fund', authenticateToken, userController.fundUserById);
+
+// Withdraw from user account (protected by token-based auth)
+router.post('/withdraw', authenticateToken, userController.withdrawFromUserById);
 
 module.exports = router;
