@@ -1,4 +1,5 @@
 const { MongoClient, ObjectId } = require('mongodb');
+const { comparePasswords } = require('../utils/_bycrypt');
 const DATABASE_URL = process.env.MONGODB_URL;
 
 async function connectToDatabase() {
@@ -44,8 +45,12 @@ async function authUser(username, password) {
     const usersCollection = db.collection('users');
 
     // Find the user by their ObjectId (assuming "_id" is an ObjectId)
-    const user = await usersCollection.findOne({ username, password });
-    return user;
+    const user = await usersCollection.findOne({ username });
+    if(comparePasswords(password, user.password)) {
+      return user;
+    } else {
+      new Error("Error trying to auth user")
+    }
   } catch (error) {
     console.error('Error trying to auth user', error);
     throw error;

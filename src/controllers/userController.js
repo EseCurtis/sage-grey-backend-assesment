@@ -1,10 +1,13 @@
 const userModel = require('../models/userModel');
+const { encryptPassword } = require('../utils/_bycrypt');
 
 // Function to create a user
 async function createUser(req, res) {
   try {
+    req.body.password = encryptPassword(req.body.password)
     const user = await userModel.createUser(req.body);
-    res.status(201).json({ username: req.body.username, password: req.body.password, ...user});
+
+    res.status(201).json({ username: req.body.username, ...user});
   } catch (error) {
     console.error('Error creating user:', error);
     res.status(500).json({ message: 'Internal server error' });
@@ -23,7 +26,6 @@ async function getUserById(req, res) {
       res.json(user);
     }
   } catch (error) {
-    //console.error('Error getting user by ID:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 }
