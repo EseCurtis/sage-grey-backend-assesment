@@ -2,7 +2,7 @@ const request = require("supertest");
 const app = require("../src/App");
 
 let testUser = {
-    username: "test_user1-username--fund-user"+Date.now(),
+    username: "test_user1-username--fund-user-"+Date.now(),
     password: "test_user1-password--fund-user",
     balance: 0,
 };
