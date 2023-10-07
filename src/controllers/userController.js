@@ -4,15 +4,23 @@ const { encryptPassword } = require('../utils/_bycrypt');
 // Function to create a user
 async function createUser(req, res) {
   try {
-    req.body.password = encryptPassword(req.body.password)
+    const existingUser = await userModel.getUserByUsername(req.body.username);
+
+    if (existingUser) {
+      // User with the same username already exists
+      return res.status(400).json({ message: 'User with this username already exists' });
+    }
+
+    req.body.password = await encryptPassword(req.body.password);
     const user = await userModel.createUser(req.body);
 
-    res.status(201).json({ username: req.body.username, ...user});
+    res.status(201).json({ username: req.body.username, ...user });
   } catch (error) {
     console.error('Error creating user:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 }
+
 
 // Function to get user details by ID
 async function getUserById(req, res) {

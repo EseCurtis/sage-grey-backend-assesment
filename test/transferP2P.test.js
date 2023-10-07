@@ -2,13 +2,13 @@ const request = require("supertest");
 const app = require("../src/App");
 
 let testUser = {
-    username: "test_user1-username--trasfer-p2p",
+    username: "test_user1-username--trasfer-p2p"+Date.now(),
     password: "test_user1-password--trasfer-p2p",
     balance: 140,
 };
 
 let testUser2 = {
-    username: "test_user2-username--trasfer-p2p",
+    username: "test_user2-username--trasfer-p2p"+Date.now(),
     password: "test_user2-password--trasfer-p2p",
     balance: 100,
 };

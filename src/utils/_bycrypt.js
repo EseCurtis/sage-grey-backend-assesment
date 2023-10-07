@@ -7,6 +7,7 @@ async function encryptPassword(password) {
     const hash = await bcrypt.hash(password, salt);
     return hash;
   } catch (error) {
+    console.log(error)
     throw error;
   }
 }

@@ -39,6 +39,15 @@ async function getUserById(userId) {
   }
 }
 
+async function getUserByUsername(username) {
+  const db = await connectToDatabase();
+  const usersCollection = db.collection('users');
+  const user = await usersCollection.findOne({ username });
+
+  return user;
+}
+
+
 async function authUser(username, password) {
   try {
     const db = await connectToDatabase();
@@ -46,7 +55,8 @@ async function authUser(username, password) {
 
     // Find the user by their ObjectId (assuming "_id" is an ObjectId)
     const user = await usersCollection.findOne({ username });
-    if(comparePasswords(password, user.password)) {
+
+    if(await comparePasswords(password, user.password)) {
       return user;
     } else {
       new Error("Error trying to auth user")
@@ -85,6 +95,7 @@ async function updateUserBalance(userId, newBalance) {
 module.exports = {
   createUser,
   getUserById,
+  getUserByUsername,
   authUser,
   updateUserBalance,
 };
